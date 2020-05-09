@@ -16,12 +16,13 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import Navigator from "../components/Navigator";
-import Content from "../components/Content";
-import Copyright from "../components/Copyright"
+import Navigator from "components/Navigator";
+import Content from "components/Content";
+import Copyright from "components/Copyright"
+
 import DashboardRoutes from "./DashboardRoutes"
 
-import theme from "../theme"
+import theme from "../../theme"
 
 const drawerWidth = 256;
 

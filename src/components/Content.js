@@ -9,11 +9,11 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     maxWidth: 936,
     margin: 'auto',
@@ -34,11 +34,10 @@ const styles = (theme) => ({
   contentWrapper: {
     margin: '40px 16px',
   },
-});
+}));
 
 function Content(props) {
-  const { classes } = props;
-
+  const classes = useStyles()
   return (
     <Paper className={classes.paper}>
       <AppBar className={classes.searchBar} position="static" color="default" elevation={0}>
@@ -79,8 +78,4 @@ function Content(props) {
   );
 }
 
-Content.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Content);
+export default Content;

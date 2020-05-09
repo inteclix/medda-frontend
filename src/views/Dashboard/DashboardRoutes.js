@@ -4,7 +4,6 @@ import {
   Route
 } from "react-router-dom"
 
-// views
 import Test from "./Test"
 
 const routes = [
