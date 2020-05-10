@@ -16,11 +16,11 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import Navigator from "components/Navigator";
+import Navigator from "containers/Navigator";
 import Content from "components/Content";
 import Copyright from "components/Copyright"
 
-import DashboardRoutes from "./DashboardRoutes"
+import DashboardRoutes from "routes/DashboardRoutes"
 
 import theme from "../../theme"
 

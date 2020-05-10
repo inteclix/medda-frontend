@@ -18,28 +18,9 @@ import SettingsInputComponentIcon from "@material-ui/icons/SettingsInputComponen
 import TimerIcon from "@material-ui/icons/Timer";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
+import {Link as RouterLink, useLocation} from "react-router-dom"
 
-const categories = [
-  {
-    id: "Develop",
-    children: [
-      { id: "Authentication", icon: <PeopleIcon />, active: true },
-      { id: "Database", icon: <DnsRoundedIcon /> },
-      { id: "Storage", icon: <PermMediaOutlinedIcon /> },
-      { id: "Hosting", icon: <PublicIcon /> },
-      { id: "Functions", icon: <SettingsEthernetIcon /> },
-      { id: "ML Kit", icon: <SettingsInputComponentIcon /> },
-    ],
-  },
-  {
-    id: "Quality",
-    children: [
-      { id: "Analytics", icon: <SettingsIcon /> },
-      { id: "Performance", icon: <TimerIcon /> },
-      { id: "Test Lab", icon: <PhonelinkSetupIcon /> },
-    ],
-  },
-];
+
 
 const useStyles = makeStyles((theme) => ({
   categoryHeader: {
@@ -84,26 +65,47 @@ const useStyles = makeStyles((theme) => ({
 
 function Navigator(props) {
   const classes = useStyles();
+  const location = useLocation()
+  const categories = [
+  {
+    id: "Gestions",
+    children: [
+      { 
+        id: "Home",
+        icon: <SettingsInputComponentIcon />,
+        to: "/",
+        active: location.pathname === "/"
+      },
+      { 
+        id: "Patients",
+        icon: <PeopleIcon />,
+        active: location.pathname.startsWith("/patients"),
+        to: "/patients"
+      }
+    ],
+  },
+    {
+      id: "Parameters",
+      children: [
+        { 
+          id: "Comptes",
+          icon: <SettingsInputComponentIcon />,
+          to: "/accounts",
+          active: location.pathname.startsWith("/accounts"),
+        }
+      ],
+    }
+  ];
+
   return (
     <Drawer variant="permanent" {...props}>
       <List disablePadding>
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}
         >
-          Paperbase
+          Medical online
         </ListItem>
-        <ListItem className={clsx(classes.item, classes.itemCategory)}>
-          <ListItemIcon className={classes.itemIcon}>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText
-            classes={{
-              primary: classes.itemPrimary,
-            }}
-          >
-            Project Overview
-          </ListItemText>
-        </ListItem>
+
         {categories.map(({ id, children }) => (
           <React.Fragment key={id}>
             <ListItem className={classes.categoryHeader}>
@@ -115,10 +117,12 @@ function Navigator(props) {
                 {id}
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
+            {children.map(({ id: childId, icon, active, to }) => (
               <ListItem
                 key={childId}
                 button
+                component={RouterLink}
+                to={to}
                 className={clsx(classes.item, active && classes.itemActiveItem)}
               >
                 <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>

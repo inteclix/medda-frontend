@@ -1,23 +1,22 @@
 import React from "react"
 import {
-  BrowserRouter,
   Route
 } from "react-router-dom"
 
-import Test from "./Test"
+import Home from "views/Home"
 
 const routes = [
   {
-    component: Test,
-    path: "/test",
-    exact: false
+    component: Home,
+    path: "/",
+    exact: true
   }
 ]
 
 export default ()=>(
-  <BrowserRouter>
+  <>
     {routes.map((route, index)=>(
       <Route key={index} component={route.component} exact={route.exact} path={route.path} />
     ))}
-  </BrowserRouter>
+  </>
 )
