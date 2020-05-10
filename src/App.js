@@ -1,11 +1,15 @@
-import React from "react";
-import {BrowserRouter} from "react-router-dom"
-import Dashboard from "views/Dashboard";
+import React, {useEffect} from "react";
+import { BrowserRouter } from "react-router-dom"
+
+import AppRoutes from "routes/AppRoutes";
 
 function App() {
+  useEffect(()=>{
+    
+  },[])
   return (
     <BrowserRouter>
-      <Dashboard />
+      <AppRoutes/>
     </BrowserRouter>
   );
 }
