@@ -20,8 +20,6 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
 import {Link as RouterLink, useLocation} from "react-router-dom"
 
-
-
 const useStyles = makeStyles((theme) => ({
   categoryHeader: {
     paddingTop: theme.spacing(2),
