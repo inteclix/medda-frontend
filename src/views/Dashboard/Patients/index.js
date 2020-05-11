@@ -1,5 +1,1 @@
-import React from "react"
-
-export default ()=>(
-  <div>Patients view</div>
-)
+export { default } from "./Patients"

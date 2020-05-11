@@ -1,22 +1,16 @@
 import React from "react"
-import {
-  Route
-} from "react-router-dom"
-
+import RoutesBuilder from "components/RoutesBuilder"
 import Patients from "views/Dashboard/Patients"
 
 const routes = [
   {
     component: Patients,
     path: "/patients",
-    exact: false
+    exact: false,
+    private: true
   }
 ]
 
 export default ()=>(
-  <>
-    {routes.map((route, index)=>(
-      <Route key={index} component={route.component} exact={route.exact} path={route.path} />
-    ))}
-  </>
+  <RoutesBuilder routes={routes} />
 )

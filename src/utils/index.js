@@ -1,3 +1,2 @@
-export const isLogin = () => {
-  setTimeout(() => Promise.resolve(), 1000)
-}
+import * as utils from "./utils"
+export default utils

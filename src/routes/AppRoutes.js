@@ -13,7 +13,7 @@ import Dashboard from "views/Dashboard"
 const routes = [
   {
     component: Home,
-    path: "/",
+    path: "/home",
     exact: true
   },
   {
@@ -28,9 +28,9 @@ const routes = [
   },
     {
     component: Dashboard,
-    path: "/dashboard",
+    path: "/",
     exact: false,
-    private: true
+    
   },
 ]
 

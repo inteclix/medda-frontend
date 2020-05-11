@@ -69,7 +69,7 @@ function Navigator(props) {
     id: "Gestions",
     children: [
       { 
-        id: "Home",
+        id: "Dashboard",
         icon: <SettingsInputComponentIcon />,
         to: "/",
         active: location.pathname === "/"
