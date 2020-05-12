@@ -1,39 +1,16 @@
-import React from "react"
-import {
-  Route
-} from "react-router-dom"
+import React from "react";
+import { Route } from "react-router-dom";
 
-import RoutesBuilder from "components/RoutesBuilder"
+import Dashboard from "views/Dashboard"; // Dashboard contain DashboardRoutes
+import Others from "views/Others";
 
-import Home from "views/Home"
-import Signin from "views/Signin"
-import Signup from "views/Signup"
-import Dashboard from "views/Dashboard"
+import { useAppStore } from "stores";
 
-const routes = [
-  {
-    component: Home,
-    path: "/home",
-    exact: true
-  },
-  {
-    component: Signin,
-    path: "/signin",
-    exact: true
-  },
-  {
-    component: Signup,
-    path: "/signup",
-    exact: true
-  },
-    {
-    component: Dashboard,
-    path: "/",
-    exact: false,
-    
-  },
-]
-
-export default ()=>(
-  <RoutesBuilder routes={routes} />
-)
+export default () => {
+  const { user } = useAppStore();
+  if (!user) {
+    return <Dashboard />;
+  } else {
+    return <Others />;
+  }
+};

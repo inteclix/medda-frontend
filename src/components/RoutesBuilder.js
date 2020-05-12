@@ -1,15 +1,26 @@
-import React from "react"
-import {
-  Route
-} from "react-router-dom"
+import React from "react";
+import { Route } from "react-router-dom";
 
-import PrivateRoute from "components/PrivateRoute"
+import PrivateRoute from "components/PrivateRoute";
 
-export default (props) => (
+export default ({ routes }) => (
   <>
-    {props.routes.map((route, index) => (
-      route.private ? <PrivateRoute key={index} component={route.component} exact={route.exact} path={route.path} />
-      : <Route key={index} component={route.component} exact={route.exact} path={route.path} />
-    ))}
+    {routes.map((route, index) =>
+      route.private ? (
+        <PrivateRoute
+          key={index}
+          component={route.component}
+          exact={route.exact}
+          path={route.path}
+        />
+      ) : (
+        <Route
+          key={index}
+          component={route.component}
+          exact={route.exact}
+          path={route.path}
+        />
+      )
+    )}
   </>
-)
+);

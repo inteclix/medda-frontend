@@ -18,7 +18,7 @@ import SettingsInputComponentIcon from "@material-ui/icons/SettingsInputComponen
 import TimerIcon from "@material-ui/icons/Timer";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
-import {Link as RouterLink, useLocation} from "react-router-dom"
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   categoryHeader: {
@@ -63,36 +63,36 @@ const useStyles = makeStyles((theme) => ({
 
 function Navigator(props) {
   const classes = useStyles();
-  const location = useLocation()
+  const location = useLocation();
   const categories = [
-  {
-    id: "Gestions",
-    children: [
-      { 
-        id: "Dashboard",
-        icon: <SettingsInputComponentIcon />,
-        to: "/",
-        active: location.pathname === "/"
-      },
-      { 
-        id: "Patients",
-        icon: <PeopleIcon />,
-        active: location.pathname.startsWith("/patients"),
-        to: "/patients"
-      }
-    ],
-  },
+    {
+      id: "Gestions",
+      children: [
+        {
+          id: "Dashboard",
+          icon: <SettingsInputComponentIcon />,
+          to: "/",
+          active: location.pathname === "/",
+        },
+        {
+          id: "Patients",
+          icon: <PeopleIcon />,
+          active: location.pathname.startsWith("/patients"),
+          to: "/patients",
+        },
+      ],
+    },
     {
       id: "Parameters",
       children: [
-        { 
+        {
           id: "Comptes",
           icon: <SettingsInputComponentIcon />,
           to: "/accounts",
           active: location.pathname.startsWith("/accounts"),
-        }
+        },
       ],
-    }
+    },
   ];
 
   return (

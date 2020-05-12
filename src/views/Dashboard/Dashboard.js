@@ -1,10 +1,7 @@
 import React from "react";
-import {useLocation} from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import {
-  ThemeProvider,
-  withStyles,
-} from "@material-ui/core/styles";
+import { ThemeProvider, withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Hidden from "@material-ui/core/Hidden";
 import Link from "@material-ui/core/Link";
@@ -19,11 +16,11 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 import Navigator from "containers/dashboard/Navigator";
 import Content from "components/Content";
-import Copyright from "components/Copyright"
+import Copyright from "components/Copyright";
 
-import DashboardRoutes from "routes/DashboardRoutes"
+import DashboardRoutes from "routes/DashboardRoutes";
 
-import theme from "../../theme"
+import theme from "../../theme";
 
 const drawerWidth = 256;
 
@@ -57,12 +54,12 @@ const styles = {
 function Dashboard(props) {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const location = useLocation() 
+  const location = useLocation();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  if(location.pathname === "/home"){
-    return null
+  if (location.pathname === "/home") {
+    return null;
   }
   return (
     <ThemeProvider theme={theme}>
