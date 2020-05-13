@@ -10,12 +10,12 @@ import AppRoutes from "routes/AppRoutes";
 import useApi from "hooks/useApi";
 import { AppProvider } from "stores";
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const { api, token, setToken } = useApi();
   window.setToken = setToken;
   useEffect(() => {
-    setIsLoading(true);
+    //setIsLoading(true);
     api
       .get("/auth/me")
       .then(({ data }) => {

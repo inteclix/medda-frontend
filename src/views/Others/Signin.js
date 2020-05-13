@@ -1,6 +1,8 @@
 import React from "react"
 import { Paper, TextField, makeStyles, Typography, Toolbar, Button, Grid, Box } from "@material-ui/core";
-import { className } from "postcss-selector-parser";
+import authenticationSVG from "assets/authentication.svg"
+import doctorsSVG from "assets/doctors.svg"
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -14,28 +16,39 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
   },
   left: {
-    background: "url(https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80)"
+    display: "flex",
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center",
   },
   right: {
+    flex:1,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center"
+    padding: theme.spacing(3),
+    margin: 0,
+    backgroundColor: "#EDEFF2",
+    borderBottomLeftRadius: 60,
+    borderTopLeftRadius: 60
   },
-  formContainer: {
-    display: "flex",
-    flexDirection: "column",
-    padding: 5,
+  authenticationSVG: {
+    height: 200,
+    margin:theme.spacing(2),
+  },
+  doctorsSVG: {
+    height: 500
   }
 }))
 export default () => {
   const classes = useStyles()
 
   return (
-    <Grid container className={classes.root} spacing={1} >
-      <Grid className={classes.left} xs={7} item>
-
+    <Grid container className={classes.root}  >
+      <Grid className={classes.left} >
+        <img className={classes.doctorsSVG} src={doctorsSVG} />
       </Grid>
-      <Grid className={classes.right} display="flex" xs={5} item>
+      <Grid className={classes.right} xs={5} item>
+        <img src={authenticationSVG} className={classes.authenticationSVG} />
         <Paper
           component={Box}
           display="flex"

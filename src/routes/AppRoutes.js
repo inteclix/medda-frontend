@@ -8,7 +8,7 @@ import { useAppStore } from "stores";
 
 export default () => {
   const { user } = useAppStore();
-  if (!user) {
+  if (user) {
     return <Dashboard />;
   } else {
     return <Others />;
