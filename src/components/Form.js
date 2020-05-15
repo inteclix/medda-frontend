@@ -147,7 +147,6 @@ export const renderFields = (form, control, errors, row) => {
                 as={Switch}
                 name={field.name}
                 defaultValue={row ? row[field.name] : true}
-                style={{ width: 280, ...field.style  }}
                 control={control}
               />
             }

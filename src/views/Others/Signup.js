@@ -119,24 +119,28 @@ export default () => {
       type: "select",
       options: specialities,
       rules: { required: "This field is required" },
+      style: {width: "100%"}
     },
     {
       name: "mobile",
       placeholder: "Tel mobile",
       type: "text",
       rules: { required: "This field is required" },
+      style: {width: "100%"}
     },
     {
       name: "username",
       placeholder: "Nom d'utilisateur",
       type: "text",
       rules: { required: "This field is required" },
+      style: {width: "100%"}
     },
     {
       name: "password",
       placeholder: "Mot de pass",
       type: "password",
       rules: { required: "This field is required" },
+      style: {width: "100%"}
     },
   ];
   return (
