@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect, useLocation } from "react-router-dom";
 
 import RoutesBuilder from "components/RoutesBuilder";
 
@@ -23,6 +23,12 @@ const routes = [
     path: "/signup",
     exact: true,
   },
+  {
+    component: "redirect",
+    to: "/",
+  },
 ];
 
-export default () => <RoutesBuilder routes={routes} />;
+export default () => {
+  return <RoutesBuilder routes={routes} />;
+};

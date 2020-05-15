@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Typography,
   TextField,
@@ -10,19 +10,18 @@ import {
   FormControlLabel,
   InputLabel,
   FormHelperText,
-  Paper
-} from '@material-ui/core';
+  Paper,
+} from "@material-ui/core";
 import {
   DatePicker,
   KeyboardDatePicker,
   TimePicker,
   DateTimePicker,
   MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import {SingleSelect} from 'react-select-material-ui';
+} from "@material-ui/pickers";
+import { Controller } from "react-hook-form";
 
-
-export const FormField = ({ control, errors, field, style }) => {
+export default ({ control, errors, field, style }) => {
   if (
     field.type === "text" ||
     field.type === "password" ||
@@ -30,7 +29,6 @@ export const FormField = ({ control, errors, field, style }) => {
   ) {
     return (
       <FormControl
-        key={index}
         fullWidth
         margin="normal"
         error={Boolean(errors[field.name])}
@@ -40,8 +38,8 @@ export const FormField = ({ control, errors, field, style }) => {
           type={field.type}
           control={control}
           required={field.rules ? true : false}
-          name={field.name ? field.name : field.code}
-          defaultValue={row ? row[field.name] : ""}
+          name={field.name}
+          defaultValue={field ? field[field.name] : ""}
           label={field.label}
           rules={field.rules}
         />
@@ -54,7 +52,6 @@ export const FormField = ({ control, errors, field, style }) => {
   if (field.type === "number") {
     return (
       <FormControl
-        key={index}
         fullWidth
         margin="normal"
         error={Boolean(errors[field.name])}
@@ -65,7 +62,7 @@ export const FormField = ({ control, errors, field, style }) => {
           control={control}
           required={field.rules ? true : false}
           name={field.name ? field.name : field.code}
-          defaultValue={row ? row[field.name] : ""}
+          defaultValue={field ? field[field.name] : ""}
           label={field.label}
           rules={field.rules}
         />
@@ -80,7 +77,6 @@ export const FormField = ({ control, errors, field, style }) => {
   if (field.type === "date") {
     return (
       <FormControl
-        key={index}
         fullWidth
         margin="normal"
         error={Boolean(errors[field.name])}
@@ -91,7 +87,7 @@ export const FormField = ({ control, errors, field, style }) => {
           control={control}
           required={field.rules ? true : false}
           name={field.name}
-          defaultValue={row ? row[field.name] : new Date()}
+          defaultValue={field ? field[field.name] : new Date()}
           label={field.label}
           rules={field.rules}
           InputLabelProps={{
@@ -106,36 +102,18 @@ export const FormField = ({ control, errors, field, style }) => {
   }
   if (field.type === "select" || field.type === "list") {
     return (
-      <FormControl
-        fullWidth
-        margin="normal"
-        error={Boolean(errors[field.name])}
-        key={index}
-      >
-        <Controller
-          as={SingleSelect}
-          name={field.name}
-          defaultValue={row ? row[field.name] : ""}
-          rules={field.rules}
-          control={control}
-          options={field.options}
-          label={field.label}
-        />
-        <FormHelperText>
-          {errors[field.name] && errors[field.name].message}
-        </FormHelperText>
-      </FormControl>
+      null
     );
   }
   if (field.type === "boolean") {
     return (
-      <FormControl fullWidth margin="normal" key={index}>
+      <FormControl fullWidth margin="normal">
         <FormControlLabel
           control={
             <Controller
               as={Switch}
               name={field.name}
-              defaultValue={row ? row[field.name] : true}
+              defaultValue={field ? field[field.name] : true}
               control={control}
             />
           }

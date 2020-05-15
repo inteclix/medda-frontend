@@ -1,18 +1,31 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link as LinkRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import { ThemeProvider, withStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Hidden from "@material-ui/core/Hidden";
-import Link from "@material-ui/core/Link";
-import AppBar from "@material-ui/core/AppBar";
-import Avatar from "@material-ui/core/Avatar";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import {
+  Grid,
+  Avatar,
+  Link,
+  AppBar,
+  Hidden,
+  CssBaseline,
+  Menu,
+  Button,
+  MenuList,
+  MenuItem,
+  ListItemIcon,
+  Toolbar,
+  Tooltip,
+  IconButton,
+  Typography,
+  Popover 
+} from "@material-ui/core";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import Toolbar from "@material-ui/core/Toolbar";
-import Tooltip from "@material-ui/core/Tooltip";
+import SendIcon from "@material-ui/icons/Send";
+import MenuIcon from "@material-ui/icons/Menu";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 import Navigator from "containers/dashboard/Navigator";
 import Content from "components/Content";
@@ -21,6 +34,7 @@ import Copyright from "components/Copyright";
 import DashboardRoutes from "routes/DashboardRoutes";
 
 import theme from "../../theme";
+import { useAppStore } from "stores";
 
 const drawerWidth = 256;
 
@@ -55,12 +69,20 @@ function Dashboard(props) {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const location = useLocation();
+  const { user, setToken } = useAppStore();
+  const [profileAnchorEl, setProfileAnchorEl] = React.useState(null);
+
+  const handleProfileClick = (event) => {
+    setProfileAnchorEl(event.currentTarget);
+  };
+
+  const handleProfileClose = () => {
+    setProfileAnchorEl(null);
+  };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  if (location.pathname === "/home") {
-    return null;
-  }
+
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
@@ -111,9 +133,45 @@ function Dashboard(props) {
                   <IconButton
                     color="inherit"
                     className={classes.iconButtonAvatar}
+                    onClick={handleProfileClick}
                   >
-                    <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+                    <Avatar alt={user.username.toUpperCase()} />
                   </IconButton>
+                  <Popover 
+                    anchorEl={profileAnchorEl}
+                    keepMounted
+                    open={Boolean(profileAnchorEl)}
+                    onClose={handleProfileClose}
+                    autoFocus={false}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                  >
+                    <MenuList>
+                      <MenuItem component={LinkRouter} to="/me">
+                        <ListItemIcon>
+                          <AccountCircleIcon fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit">
+                          Mon Compte
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem component={LinkRouter} to="/settings">
+                        <ListItemIcon>
+                          <SettingsIcon fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit">
+                          Parameters
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem component={Button} onClick={()=>{setToken("")}}>
+                        <ListItemIcon>
+                          <ExitToAppIcon fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit" noWrap>
+                          Déconnecté
+                        </Typography>
+                      </MenuItem>
+                    </MenuList>
+                  </Popover >
                 </Grid>
               </Grid>
             </Toolbar>

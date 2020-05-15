@@ -1,16 +1,36 @@
-import React from "react"
-import RoutesBuilder from "components/RoutesBuilder"
-import Patients from "views/Dashboard/Patients"
+import React from "react";
+import RoutesBuilder from "components/RoutesBuilder";
+
+import Home from "views/Dashboard/Home";
+import Me from "views/Dashboard/Me";
+import Settings from "views/Dashboard/Settings";
+import Patients from "views/Dashboard/Patients";
 
 const routes = [
+  {
+    component: Home,
+    path: "/",
+    exact: true,
+  },
+  {
+    component: Me,
+    path: "/me",
+    exact: true,
+  },
+  {
+    component: Settings,
+    path: "/settings",
+    exact: true,
+  },
   {
     component: Patients,
     path: "/patients",
     exact: false,
-    private: true
-  }
-]
+  },
+  {
+    component: "redirect",
+    to: "/",
+  },
+];
 
-export default ()=>(
-  <RoutesBuilder routes={routes} />
-)
+export default () => <RoutesBuilder routes={routes} />;

@@ -5,41 +5,55 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import { LinearProgress } from "@material-ui/core";
 
-import AppRoutes from "routes/AppRoutes";
+import Dashboard from "views/Dashboard";
+import Others from "views/Others";
 
 import useApi from "hooks/useApi";
 import { AppProvider } from "stores";
+
+const AppContainer = ({ children }) => (
+  <MuiPickersUtilsProvider utils={MomentUtils}>
+    <SnackbarProvider maxSnack={3}>
+      <BrowserRouter>{children}</BrowserRouter>
+    </SnackbarProvider>
+  </MuiPickersUtilsProvider>
+);
+
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingUser, setIsLoadingUser] = useState(true);
   const [user, setUser] = useState(null);
   const { api, token, setToken } = useApi();
-  window.setToken = setToken;
+  window.setToken = setToken
   useEffect(() => {
-    //setIsLoading(true);
+    setIsLoadingUser(true);
     api
       .get("/auth/me")
       .then(({ data }) => {
         setUser(data);
-        setIsLoading(false);
+        setIsLoadingUser(false);
       })
       .catch(() => {
-        setIsLoading(false);
+        setUser(null);
+        setIsLoadingUser(false);
       });
   }, [token]);
-
-  if (isLoading) {
+  if (isLoadingUser) {
     return <LinearProgress />;
   }
-
+  if (user) {
+    return (
+      <AppProvider value={{ user, api, setToken }}>
+        <AppContainer>
+          <Dashboard />
+        </AppContainer>
+      </AppProvider>
+    );
+  }
   return (
-    <AppProvider value={user}>
-      <MuiPickersUtilsProvider utils={MomentUtils}>
-        <SnackbarProvider maxSnack={3}>
-          <BrowserRouter>
-            <AppRoutes />
-          </BrowserRouter>
-        </SnackbarProvider>
-      </MuiPickersUtilsProvider>
+    <AppProvider value={{ user, api, setToken }}>
+      <AppContainer>
+        <Others />
+      </AppContainer>
     </AppProvider>
   );
 }

@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "clsx": "^1.1.0",
+    "material-table": "^1.57.2",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "moment": "2.24.0",
@@ -23,7 +24,9 @@
     "react-hook-form": "^5.6.3",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-select-material-ui": "^6.5.0",
+    "typeface-roboto": "^0.0.75"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,12 +1,14 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import PrivateRoute from "components/PrivateRoute";
 
 export default ({ routes }) => (
-  <>
+  <Switch>
     {routes.map((route, index) =>
-      route.private ? (
+      route.component === "redirect" ? (
+        <Redirect key={index} to={route.to} />
+      ) : route.private ? (
         <PrivateRoute
           key={index}
           component={route.component}
@@ -22,5 +24,5 @@ export default ({ routes }) => (
         />
       )
     )}
-  </>
+  </Switch>
 );
