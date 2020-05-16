@@ -10,6 +10,8 @@ import {
   Grid,
   Box,
 } from "@material-ui/core";
+import { motion } from "framer-motion";
+
 import { Link as LinkRouter } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
@@ -115,27 +117,46 @@ export default () => {
       placeholder: "Nom d'utilisateur",
       type: "text",
       rules: { required: "This field is required" },
-      style: {width: "100%"}
+      style: { width: "100%" },
     },
     {
       name: "password",
       placeholder: "Mot de pass",
       type: "password",
       rules: { required: "This field is required" },
-      style: {width: "100%"}
+      style: { width: "100%" },
     },
   ];
   return (
     <Grid container className={classes.root}>
       <Grid className={classes.left}>
-        <img className={classes.doctorsSVG} src={doctorsSVG} />
+        <motion.div
+          animate={{ scale: 0.95, rotate: 0.5, opacity: 0.8 }}
+          transition={{
+            yoyo: Infinity,
+            duration: 4,
+            ease: "easeInOut",
+          }}
+        >
+          <img className={classes.doctorsSVG} src={doctorsSVG} />
+        </motion.div>
         <Typography variant="h5">
           ❝ MEDDA la première application ❤ médical online en ALGERIE ❞
         </Typography>
       </Grid>
 
       <Grid component={PerfectScrollbar} className={classes.right} item>
-        <img src={authenticationSVG} className={classes.authenticationSVG} />
+        <motion.div
+        style={{display: "flex", alignItems: "center", justifyContent:"center "}}
+          animate={{ scale: 0.98, rotate: 0.5, opacity: 0.8 }}
+          transition={{
+            yoyo: Infinity,
+            duration: 2,
+            ease: "easeInOut",
+          }}
+        >
+          <img src={authenticationSVG} className={classes.authenticationSVG} />
+        </motion.div>
         <Paper className={classes.form}>
           <Typography variant="h6">Connecté à MEDDA</Typography>
 

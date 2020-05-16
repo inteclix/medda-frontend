@@ -9,7 +9,9 @@ import { useAppStore } from "stores";
 
 import MaterialTable from "components/MaterialTable";
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
+import PatientConsultations from "./PatientConsultations"
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(3),
@@ -106,12 +108,12 @@ const List = () => {
           }}
           onRowClick={(evt, selectedRow) => setSelectedRow(selectedRow)}
           detailPanel={(rowData) => {
-            return <div style={{ height: 200, backgroundColor: "red" }}></div>;
+            return <PatientConsultations id={rowData.tableData.id}/>
           }}
           actions={[
             {
-              icon: "edit",
-              tooltip: "Save User",
+              icon: VisibilityIcon,
+              tooltip: "Modifier",
               onClick: (event, rowData) =>
                 history.push(`/patients/edit/${rowData.id}`),
             },

@@ -16,7 +16,6 @@ import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import Save from "@material-ui/icons/Save";
-import EditIcon from "@material-ui/icons/Edit";
 
 import MaterialTable from "material-table";
 
